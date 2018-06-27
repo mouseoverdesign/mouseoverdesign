@@ -1,10 +1,47 @@
 ---
 layout: default
 ---
-<main>
-<p>Хотел предложить использовать безопасные шрифты из похожих семейств. Например:</p>
-<h1>Заголовок использует такой ряд: Tahoma, Verdana, Segoe, sans-serif</h1>
-<p>То есть, приоритет от начала в конец. Если в операционной системе есть Тахома, то используется она, если нет, то Вердана, если нет, то Сегои, если нет, то системный без засечек. У айос это Сан-Франциско, вроде, например.</p>
-<p>Параграф использует такой ряд: Georgia, Times, "Times New Roman", serif.</p>
-<p>То есть, опять же приоритет от начала в конец. Если в операционной системе есть Джорджиа, то используется она, если нет, то Таймс, если нет, то Таймс Нью Роман, если нет, то системный с засечками.</p>
+<main class="content">
+  {% for post in paginator.posts %}
+    <article>
+      <header>
+        <h2>Название поста</h2>
+        <h5>Дата поста</h5>
+        <p>Описание поста</p>
+      </header>
+    </article>
+  {% endfor %}
 </main>
+
+ {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      {% if paginator.page == 2 %}
+        <a href="{{ site.siteurl }}/">&laquo; Prev</a>
+      {% else %}
+        <a href="{{ site.siteurl }}/page{{ paginator.previous_page }}/">&laquo; Prev</a>
+      {% endif %}    
+    {% else %}
+      <span>&laquo; Prev</span>
+    {% endif %}
+
+    {% if paginator.next_page %}
+      <a class='next' href="{{ site.siteurl }}/page{{ paginator.next_page }}/">Next &raquo;</a>
+    {% else %}
+      <span class='next'>Next &raquo;</span>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
+
+<script type="text/javascript">
+// content selector is used to extract the additional items 
+$('.content').jscroll({
+    contentSelector: ".content",
+    nextSelector: '.next'
+});
+</script>
