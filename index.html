@@ -5,9 +5,9 @@ layout: default
   {% for post in paginator.posts %}
     <article>
       <header>
-        <h2>Название поста</h2>
-        <h5>Дата поста</h5>
-        <p>Описание поста</p>
+        <h2><a href="{{ site.siteurl }}{{ post.url }}">{{ post.title }}</a></h2>
+        <h5>{{ post.date | date: "%d %b %Y" }}</h5>
+        <p>{{ post.content | truncatewords:50 | strip_html }}</p>
       </header>
     </article>
   {% endfor %}
