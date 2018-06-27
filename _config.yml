@@ -25,6 +25,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 kramdown:
   auto_ids: false
 
+paginate: 10
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
