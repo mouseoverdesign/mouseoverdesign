@@ -25,10 +25,11 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 kramdown:
   auto_ids: false
 
-# paginate: 1
+paginate: 1
 
 # Plugins
-# plugins: [jekyll-paginate]
+plugins:
+  - jekyll-paginate
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
