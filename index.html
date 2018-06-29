@@ -15,18 +15,14 @@ pagination:
 </main>
 
 {% if paginator.total_pages > 1 %}
-<ul>
+<div class="pagination">
   {% if paginator.previous_page %}
-  <li>
     <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
-  </li>
   {% endif %}
   {% if paginator.next_page %}
-  <li>
     <a class="next" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
-  </li>
   {% endif %}
-</ul>
+</div>
 {% endif %}
 
 
@@ -37,6 +33,6 @@ pagination:
 // content selector is used to extract the additional items 
 $('.content').jscroll({
     contentSelector: ".content",
-    nextSelector: '.next'
+    nextSelector: ".next"
 });
 </script>
