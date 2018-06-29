@@ -12,18 +12,18 @@ pagination:
       </header>
     </article>
   {% endfor %}
-</main>
-
-{% if paginator.total_pages > 1 %}
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
-  {% endif %}
-  {% if paginator.next_page %}
-    <a class="next" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
-  {% endif %}
-</div>
+  
+  {% if paginator.total_pages > 1 %}
+    <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
+    {% endif %}
+    {% if paginator.next_page %}
+      <a class="next" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
+    {% endif %}
+    </div>
 {% endif %}
+</main>
 
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -33,10 +33,8 @@ pagination:
 // content selector is used to extract the additional items 
 $(function() {
   $('.content').jscroll({
-      debug: true,
       contentSelector: '.content',
       nextSelector: '.next'
   });
-  console.log('done');
 });
 </script>
