@@ -31,8 +31,12 @@ pagination:
 
 <script type="text/javascript">
 // content selector is used to extract the additional items 
-$('.content').jscroll({
-    contentSelector: ".content",
-    nextSelector: ".next"
+$(function() {
+  $('.content').jscroll({
+      debug: true,
+      contentSelector: '.content',
+      nextSelector: '.next'
+  });
+  console.log('done');
 });
 </script>
