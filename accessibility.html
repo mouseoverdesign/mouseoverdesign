@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<main>
+  <h2>Стандарты</h2>
+  <ul>
+    {% for item in site.data.accessibility.jobs %}
+    <li>
+      <a href="{{ item.url }}">{{ item.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  
+  <h2>Статьи</h2>
+  <ul>
+  {% for item in site.data.accessibility.articles %}
+    <li>
+      <a href="{{ item.url }}">{{ item.title }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</main>
