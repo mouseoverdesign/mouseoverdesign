@@ -9,7 +9,7 @@ layout: default
   <section>
     <h2>{{ category.category-title }}</h2>
     <ul>
-      {% assign items = category.item | sort: 'title' %}
+      {% assign items = category.source | sort: 'title' %}
       {% for item in items %}
       <li>
         <a href="{{ item.url }}">{{ item.title }}</a>
