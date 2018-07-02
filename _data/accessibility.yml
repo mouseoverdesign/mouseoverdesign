@@ -1,3 +1,19 @@
+# Шаблон для добавления ресурса
+
+# перед title дефис обязателен
+# одиночные кавычки обязательны
+
+#  - title: 'наименование ресурса или статьи в кавычках'
+#    url: 'полная ссылка на ресурс'
+
+
+# список ресурсов
+groups:
+  - group-title: 'Стандарты'
+  
+  - group-title: 'Статьи'
+
+
 standarts:
   - title: 'Web Content Accessibility Guidelines (WCAG)'
     url: 'https://www.w3.org/TR/WCAG/'
