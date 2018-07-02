@@ -1,0 +1,13 @@
+standarts:
+  - title: 'Web Content Accessibility Guidelines (WCAG)'
+    url: 'https://www.w3.org/TR/WCAG/'
+    
+  - title: 'Understanding WCAG'
+    url: 'https://www.w3.org/WAI/WCAG21/Understanding/'
+
+articles:
+  - title: 'The web accessibility basics'
+    url: 'https://www.marcozehe.de/2015/12/14/the-web-accessibility-basics/'
+
+  - title: 'Доступность сайтов для «самых маленьких»'
+    url: 'https://netology.ru/blog/dostupnost'
