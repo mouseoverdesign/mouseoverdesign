@@ -33,6 +33,12 @@ pagination:
 # Plugins
 plugins:
 - jekyll-paginate-v2
+- jekyll-algolia
+
+# Поиск
+algolia:
+  application_id: TBGKODKTCT
+  index_name:     mouseover # You can replace that with whatever name you want
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
