@@ -5,41 +5,17 @@ layout: default
 <div id="search-searchbar"></div>
 
 <main id="search-hits">
-  <h2>Стандарты</h2>
-  <ul>
-    {% for item in site.data.accessibility.standarts %}
-    <li>
-      <a href="{{ item.url }}">{{ item.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-  
-  <h2>Сообщество</h2>
-  <ul>
-  {% for item in site.data.accessibility.community %}
-    <li>
-      <a href="{{ item.url }}">{{ item.title }}</a>
-    </li>
+  {% for category in site.data.accessibility %}
+  <section>
+    <h2>{% category.category-name %}</h2>
+    <ul>
+      {% assign items = category.accessibility | sort: 'title' %}
+      {% for item in items %}
+      <li>
+        <a href="{{ item.url }}">{{ item.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
   {% endfor %}
-  </ul>
-  
-  <h2>Чеклисты</h2>
-  <ul>
-  {% for item in site.data.accessibility.checklists %}
-    <li>
-      <a href="{{ item.url }}">{{ item.title }}</a>
-    </li>
-  {% endfor %}
-  </ul>
-  
-  <h2>Статьи</h2>
-  <ul>
-  {% for item in site.data.accessibility.articles %}
-    <li>
-      <a href="{{ item.url }}">{{ item.title }}</a>
-    </li>
-  {% endfor %}
-  </ul>
-  
-  
 </main>
