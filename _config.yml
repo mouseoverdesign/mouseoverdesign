@@ -38,7 +38,8 @@ plugins:
 # Поиск
 algolia:
   application_id: TBGKODKTCT
-  index_name:     mouseover # You can replace that with whatever name you want
+  index_name: mouseover # You can replace that with whatever name you want
+  search_only_api_key: 4908531e1397cc8933cdf484b8dc3f0e
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
