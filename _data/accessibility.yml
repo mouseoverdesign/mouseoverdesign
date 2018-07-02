@@ -6,48 +6,52 @@
 #  - title: 'наименование ресурса или статьи в кавычках'
 #    url: 'полная ссылка на ресурс'
 
-standarts:
-  - title: 'Web Content Accessibility Guidelines (WCAG)'
-    url: 'https://www.w3.org/TR/WCAG/'
-    
-  - title: 'Understanding WCAG'
-    url: 'https://www.w3.org/WAI/WCAG21/Understanding/'
-    
-  - title: 'How to Meet WCAG 2 (Quick Reference)'
-    url: 'https://www.w3.org/WAI/WCAG21/quickref/'
-    
-  - title: 'Authoring Tool Accessibility Guidelines (ATAG) 2.0'
-    url: 'https://www.w3.org/TR/ATAG/'
- 
-  - title: 'User Agent Accessibility Guidelines (UAAG) 2.0'
-    url: 'https://www.w3.org/TR/UAAG20/'
-    
-  - title: 'Accessible Rich Internet Applications (WAI-ARIA) 1.1'
-    url: 'https://www.w3.org/TR/wai-aria/'
- 
-  - title: 'WAI-ARIA Authoring Practices 1.1'
-    url: 'https://www.w3.org/TR/wai-aria-practices/' 
+- category-title: 'Cтандарты'
+  item:
+    - title: 'Web Content Accessibility Guidelines (WCAG)'
+      url: 'https://www.w3.org/TR/WCAG/'
 
-  - title: 'ARIA in HTML'
-    url: 'https://www.w3.org/TR/html-aria/'
+    - title: 'Understanding WCAG'
+      url: 'https://www.w3.org/WAI/WCAG21/Understanding/'
 
-  - title: 'Using ARIA'
-    url: 'https://www.w3.org/TR/using-aria/'
+    - title: 'How to Meet WCAG 2 (Quick Reference)'
+      url: 'https://www.w3.org/WAI/WCAG21/quickref/'
+
+    - title: 'Authoring Tool Accessibility Guidelines (ATAG) 2.0'
+      url: 'https://www.w3.org/TR/ATAG/'
+
+    - title: 'User Agent Accessibility Guidelines (UAAG) 2.0'
+      url: 'https://www.w3.org/TR/UAAG20/'
+
+    - title: 'Accessible Rich Internet Applications (WAI-ARIA) 1.1'
+      url: 'https://www.w3.org/TR/wai-aria/'
+
+    - title: 'WAI-ARIA Authoring Practices 1.1'
+      url: 'https://www.w3.org/TR/wai-aria-practices/' 
+
+    - title: 'ARIA in HTML'
+      url: 'https://www.w3.org/TR/html-aria/'
+
+    - title: 'Using ARIA'
+      url: 'https://www.w3.org/TR/using-aria/'
       
-community:
-  - title: 'The A11Y Project'
-    url: 'https://a11yproject.com/'
+- category-title: 'Сообщество'
+  item:
+    - title: 'The A11Y Project'
+      url: 'https://a11yproject.com/'
 
-checklists:
-  - title: 'WCAG 2.0 checklists'
-    url: 'https://www.wuhcag.com/wcag-checklist/'
-    
-  - title: 'Web Accessibility Checklist'
-    url: 'https://a11yproject.com/checklist'    
-    
-articles:
-  - title: 'The web accessibility basics'
-    url: 'https://www.marcozehe.de/2015/12/14/the-web-accessibility-basics/'
+- category-title: 'Чеклисты'
+  item:
+    - title: 'WCAG 2.0 checklists'
+      url: 'https://www.wuhcag.com/wcag-checklist/'
 
-  - title: 'Доступность сайтов для «самых маленьких»'
-    url: 'https://netology.ru/blog/dostupnost'
+    - title: 'Web Accessibility Checklist'
+      url: 'https://a11yproject.com/checklist'    
+    
+- category-title: 'Прочее'
+  item:
+    - title: 'The web accessibility basics'
+      url: 'https://www.marcozehe.de/2015/12/14/the-web-accessibility-basics/'
+
+    - title: 'Доступность сайтов для «самых маленьких»'
+      url: 'https://netology.ru/blog/dostupnost'
