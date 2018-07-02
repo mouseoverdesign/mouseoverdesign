@@ -7,7 +7,7 @@ layout: default
 <main id="search-hits">
   {% for category in site.data.accessibility %}
   <section>
-    <h2>{{ category.category-name }}</h2>
+    <h2>{{ category.category-title }}</h2>
     <ul>
       {% assign items = category.item | sort: 'title' %}
       {% for item in items %}
