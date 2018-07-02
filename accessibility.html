@@ -2,7 +2,9 @@
 layout: default
 ---
 
-<main>
+<div id="search-searchbar"></div>
+
+<main id="search-hits">
   <h2>Стандарты</h2>
   <ul>
     {% for item in site.data.accessibility.standarts %}
@@ -21,3 +23,5 @@ layout: default
   {% endfor %}
   </ul>
 </main>
+
+{% include algolia.html %}
