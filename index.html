@@ -1,6 +1,6 @@
 ---
 layout: default
-pagination: 
+pagination:
   enabled: true
 ---
 
@@ -9,31 +9,23 @@ pagination:
     {% for post in paginator.posts %}
       <article>
         <header>
-          <h2><a href="">{{ post.title }}</a></h2>
-          <p>{{ post.content | truncatewords:50 | strip_html }}</p>
+          <h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
         </header>
+        <section>
+          <p>{{ post.content | truncatewords:50 | strip_html }}</p>
+        </section>
+        <footer>{{ post.date | date: "%e %B" }}</footer>
       </article>
     {% endfor %}
-    
+
     {% if paginator.total_pages > 1 %}
       <div class="pagination">
       {% if paginator.next_page %}
-        <a class="next" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
+        <a class="next" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Следущая</a>
       {% endif %}
       </div>
     {% endif %}
   </div>
 </main>
 
-
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
-
-<script type="text/javascript">
-// content selector is used to extract the additional items 
-$('.content').jscroll({
-  contentSelector: '.content',
-  nextSelector: '.next',
-  pagingSelector: '.pagination'
-});
-</script>
+{% include jscroll.html %}
