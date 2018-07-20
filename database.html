@@ -11,7 +11,7 @@ layout: default
     <input id="url" class="url" type="text" required>
     <label for="description">Описание</label>
     <input id="description" class="title" type="text" required>
-    <button class="submit-btn" style="margin-top:15px;">Отправить</button>
+    <button type="button" class="submit-btn" style="margin-top:15px;">Отправить</button>
   </form>
 
   <p>Вывод данных:</p>
@@ -64,11 +64,10 @@ layout: default
   submitButton.addEventListener('click', function(e) {
     if (inputUrl.value !== '' && inputTitle.value !== '') {
       sendDataToFirebase(inputUrl.value, inputTitle.value);
-      //       inputUrl.value = '';
-      //       inputTitle.value = '';
-      document.querySelector('form').reset();
+      inputUrl.value = '';
+      inputTitle.value = '';
     } else {
-      console.log('Заполните поля');
+      alert('Заполните поля');
     }
   });
 
