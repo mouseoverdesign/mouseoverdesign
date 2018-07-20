@@ -86,7 +86,7 @@ layout: default
 	}
 
 	dataRef.on('child_removed', function(key) {
-		document.querySelector(`[data-key=`${key}`]`).remove();
+		document.querySelector(`[data-key="${key}"]`).remove();
 	});
 
 	// Удаляем по нажатию на кнопку
