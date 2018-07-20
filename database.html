@@ -3,27 +3,25 @@ layout: default
 ---
 
 <main id="search-hits">
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
+	 <div id="firebaseui-auth-container"></div>
+	 <div id="loader">Loading...</div>
 
-  <form style="display:flex;flex-direction:column;" action="">
+	 <form style="display:flex;flex-direction:column;" action="">
     <label for="url">Ссылка</label>
     <input id="url" class="url" type="text" required>
     <label for="description">Описание</label>
     <input id="description" class="title" type="text" required>
-    <button style="margin-top:15px;">Submit</button>
+    <button class="submit-btn" style="margin-top:15px;">Отправить</button>
   </form>
 
-  <p>Вывод данных:</p>
-  <ul class="data-container"></ul>
-</main>
+	  <p>Вывод данных:</p>
+	  <ul class="data-container"></ul>
+	</main>
 
-<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js">
-  < script src = "https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js" >
-</script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js"></script>
 <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-</script>
 <script>
   // Initialize Firebase
   var config = {
@@ -37,46 +35,77 @@ layout: default
   firebase.initializeApp(config);
 </script>
 <script>
-  // Get a reference to the database service
+  // Получаем референс корня базы
   var database = firebase.database();
 
   var inputUrl = document.querySelector('.url');
   var inputTitle = document.querySelector('.title');
-  var submit = document.querySelector('button');
-  var container = document.querySelector('.data-container');
+  var submitButton = document.querySelector('.submit-btn');
+	var removeButton = document.querySelector('.remove-btn');
+	var container = document.querySelector('.data-container');
 
+  // Описываем как происходит запись
+  // данных из формы в базу в раздел /accessibility
   function sendDataToFirebase(inputUrl, inputTitle) {
-    // database().ref() takes you to the root node of your database
-    // and set() writes a value in JSON format.
-    firebase.database().ref('accessibility/').push({
+    database.ref('accessibility/').push({
       url: inputUrl,
       title: inputTitle
     });
   }
 
+  // Рендерим добавленные данные на странице
   var dataRef = firebase.database().ref('accessibility/');
   dataRef.on('child_added', function(snapshot) {
-    res = snapshot.val();
-    console.log(snapshot.val());
-    document.querySelector('.data-container').innerHTML += `<li class="data"><a href="${res.url}">${res.title}</a></li>`;
+    var item = snapshot.val();
+    var key = snapshot.key;
+    document.querySelector('.data-container').innerHTML += `<li data-key="$(key)" class="data"><a href="${item.url}">${item.title}</a><button class="remove-btn" data-key="$(key)">Удалить</button></li>`;
   });
 
-  submit.addEventListener('click', function(e) {
+  // Проверяем на пустые поля и отправляем данные в базу
+  // по нажатию кнопки
+  submitButton.addEventListener('click', function(e) {
     if (inputUrl.value !== '' && inputTitle.value !== '') {
       sendDataToFirebase(inputUrl.value, inputTitle.value);
       inputUrl.value = '';
       inputTitle.value = '';
     } else {
-      console.log('Заполните поля')
+      console.log('Заполните поля');
     }
   });
+
+	// Удаление данных
+	function removeData(key) {
+		var data = database.ref('accessibility/' + key);
+
+		data.remove()
+  		.then(function() {
+    		console.log("Remove succeeded.");
+  		})
+  		.catch(function(error) {
+    		console.log("Remove failed: " + error.message);
+  		});
+	}
+
+	dataRef.on('child_removed', function(key) {
+		document.querySelector(`[data-key=`${key}`]`).remove();
+	});
+
+	// Удаляем по нажатию на кнопку
+	removeButton.forEach(function(remove) {
+		remove.addEventListener('click', function(e) {
+			var key = this.dataset.key;
+			removeData(key);
+		})
+	});
+	
+  // Аутентификация
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   ui.start('#firebaseui-auth-container', {
     signInOptions: [
-      // List of OAuth providers supported.
+      // Список провайдеров
       firebase.auth.GoogleAuthProvider.RPOVIDER_ID,
     ],
-    // Other config options...
+    // Тут могут быть другие конфиги
   });
 
   var uiConfig = {
