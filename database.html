@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<main id="search-hits">
+<main class="database">
   <div id="firebaseui-auth-container"></div>
   <div id="loader">Loading...</div>
 
@@ -18,9 +18,9 @@ layout: default
   <ul class="data-container"></ul>
 </main>
 
-<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js">
-  < script src = "https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js" >
-</script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js" />
+<script src = "https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js"></script>
 <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 </script>
@@ -39,7 +39,6 @@ layout: default
 <script>
   // Get a reference to the database service
   var database = firebase.database();
-
   var inputUrl = document.querySelector('.url');
   var inputTitle = document.querySelector('.title');
   var submit = document.querySelector('button');
@@ -54,22 +53,28 @@ layout: default
     });
   }
 
+  // Вывод данных после добавления
   var dataRef = firebase.database().ref('accessibility/');
   dataRef.on('child_added', function(snapshot) {
     res = snapshot.val();
-    console.log(snapshot.val());
-    document.querySelector('.data-container').innerHTML += `<li class="data"><a href="${res.url}">${res.title}</a></li>`;
+    document.querySelector('.data-container').innerHTML += `<li data-key="${snapshot.key}" class="data"><a href="${res.url}">${res.title}</a><button data-key="${snapshot.key}">X</button></li>`;
   });
 
+  // Отправка данных в базу
   submit.addEventListener('click', function(e) {
     if (inputUrl.value !== '' && inputTitle.value !== '') {
       sendDataToFirebase(inputUrl.value, inputTitle.value);
       inputUrl.value = '';
       inputTitle.value = '';
     } else {
-      console.log('Заполните поля')
+      console.log('Заполните поля');
     }
   });
+
+  var newDataKey = firebase.database().ref().child('posts').push().key;
+  console.log(newDataKey);
+  
+  // Авторизация
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   ui.start('#firebaseui-auth-container', {
     signInOptions: [
