@@ -6,7 +6,7 @@ layout: default
   <div id="firebaseui-auth-container"></div>
   <div id="loader">Loading...</div>
 
- <form style="display:flex;flex-direction:column;" action="">
+  <form style="display:flex;flex-direction:column;" action="">
     <label for="url">Ссылка</label>
     <input id="url" class="url" type="text" required>
     <label for="description">Описание</label>
@@ -64,9 +64,9 @@ layout: default
   submitButton.addEventListener('click', function(e) {
     if (inputUrl.value !== '' && inputTitle.value !== '') {
       sendDataToFirebase(inputUrl.value, inputTitle.value);
-//       inputUrl.value = '';
-//       inputTitle.value = '';
-    	document.querySelector('form').reset();
+      //       inputUrl.value = '';
+      //       inputTitle.value = '';
+      document.querySelector('form').reset();
     } else {
       console.log('Заполните поля');
     }
@@ -77,17 +77,17 @@ layout: default
     var data = database.ref('accessibility/' + key);
 
     data.remove()
-    .then(function() {
-    console.log("Remove succeeded.");
-    })
-    .catch(function(error) {
-    console.log("Remove failed: " + error.message);
-    });
+      .then(function() {
+        console.log("Remove succeeded.");
+      })
+      .catch(function(error) {
+        console.log("Remove failed: " + error.message);
+      });
   }
 
-//   dataRef.on('child_removed', function(key) {
-//     document.querySelector(`[data-key="${key}"]`).remove();
-//   });
+  //   dataRef.on('child_removed', function(key) {
+  //     document.querySelector(`[data-key="${key}"]`).remove();
+  //   });
 
   // Удаляем по нажатию на кнопку
   document.addEventListener('click', function(e) {
@@ -101,29 +101,29 @@ layout: default
   // Аутентификация
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   var uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      return true;
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        // User successfully signed in.
+        // Return type determines whether we continue the redirect automatically
+        // or whether we leave that to developer to handle.
+        return true;
+      },
+      uiShown: function() {
+        // The widget is rendered.
+        // Hide the loader.
+        document.getElementById('loader').style.display = 'none';
+      }
     },
-    uiShown: function() {
-      // The widget is rendered.
-      // Hide the loader.
-      document.getElementById('loader').style.display = 'none';
-    }
-  },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
     signInSuccessUrl: '/database.html',
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID
-  ],
+    ],
     // Terms of service url.
     tosUrl: '<your-tos-url>'
   };
- ui.start('#firebaseui-auth-container', uiConfig);
+  ui.start('#firebaseui-auth-container', uiConfig);
 </script>
 <!-- firebase.auth().signOut(); -->
