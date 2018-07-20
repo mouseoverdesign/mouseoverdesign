@@ -65,8 +65,9 @@ layout: default
   submitButton.addEventListener('click', function(e) {
     if (inputUrl.value !== '' && inputTitle.value !== '') {
       sendDataToFirebase(inputUrl.value, inputTitle.value);
-      inputUrl.value = '';
-      inputTitle.value = '';
+//       inputUrl.value = '';
+//       inputTitle.value = '';
+    	document.querySelector('form').reset();
     } else {
       console.log('Заполните поля');
     }
