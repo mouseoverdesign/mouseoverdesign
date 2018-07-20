@@ -57,7 +57,7 @@ layout: default
   dataRef.on('child_added', function(snapshot) {
     var item = snapshot.val();
     var key = snapshot.key;
-    document.querySelector('.data-container').innerHTML += `<li data-key="$(key)" class="data"><a href="${item.url}">${item.title}</a><button class="remove-btn" data-key="$(key)">Удалить</button></li>`;
+    document.querySelector('.data-container').innerHTML += `<li data-key="${key}" class="data"><a href="${item.url}">${item.title}</a><button class="remove-btn" data-key="${key}">Удалить</button></li>`;
   });
 
   // Проверяем на пустые поля и отправляем данные в базу
