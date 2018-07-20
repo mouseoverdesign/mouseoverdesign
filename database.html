@@ -85,15 +85,16 @@ layout: default
     });
   }
 
-  dataRef.on('child_removed', function(key) {
-    document.querySelector(`[data-key="${key}"]`).remove();
-  });
+//   dataRef.on('child_removed', function(key) {
+//     document.querySelector(`[data-key="${key}"]`).remove();
+//   });
 
   // Удаляем по нажатию на кнопку
   document.addEventListener('click', function(e) {
     if (e.target.className === 'remove-btn') {
       var key = e.target.dataset.key;
       removeData(key);
+      document.querySelector(`li[data-key="${key}"]`).remove();
     }
   });
 	
