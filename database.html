@@ -72,30 +72,30 @@ layout: default
     }
   });
 
-	// Удаление данных
-	function removeData(key) {
-		var data = database.ref('accessibility/' + key);
+  // Удаление данных
+  function removeData(key) {
+    var data = database.ref('accessibility/' + key);
 
-		data.remove()
-  		.then(function() {
-    		console.log("Remove succeeded.");
-  		})
-  		.catch(function(error) {
-    		console.log("Remove failed: " + error.message);
-  		});
-	}
+    data.remove()
+    .then(function() {
+    console.log("Remove succeeded.");
+    })
+    .catch(function(error) {
+    console.log("Remove failed: " + error.message);
+    });
+  }
 
-	dataRef.on('child_removed', function(key) {
-		document.querySelector(`[data-key="${key}"]`).remove();
-	});
+  dataRef.on('child_removed', function(key) {
+    document.querySelector(`[data-key="${key}"]`).remove();
+  });
 
-	// Удаляем по нажатию на кнопку
-	removeButton.forEach(function(remove) {
-		remove.addEventListener('click', function(e) {
-			var key = this.dataset.key;
-			removeData(key);
-		})
-	});
+  // Удаляем по нажатию на кнопку
+  document.addEventListener('click', function(e) {
+    if (e.target.className === 'remove-btn') {
+      var key = e.target.dataset.key;
+      removeData(key);
+    }
+  });
 	
   // Аутентификация
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -125,7 +125,7 @@ layout: default
     signInFlow: 'popup',
     signInSuccessUrl: '/database.html',
     signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
+      // Leave the lines as is for thae providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     ],
     // Terms of service url.
